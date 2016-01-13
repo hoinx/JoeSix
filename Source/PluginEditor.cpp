@@ -31,8 +31,16 @@ JoeSixAudioProcessorEditor::JoeSixAudioProcessorEditor (JoeSixAudioProcessor& p)
 	// this function adds the slider to the editor
 	addAndMakeVisible (&midiVolume);
 
+
+
+    // add the listener to the slider
+    midiVolume.addListener (this);
+
+
+
 }
 
+//==============================================================================
 JoeSixAudioProcessorEditor::~JoeSixAudioProcessorEditor()
 {
 }
@@ -52,6 +60,7 @@ void JoeSixAudioProcessorEditor::paint (Graphics& g)
     g.drawFittedText ("Midi Volume", 0, 0, getWidth(), 30, Justification::centred, 1);
 }
 
+//==============================================================================
 void JoeSixAudioProcessorEditor::resized()
 {
     // This is generally where you'll want to lay out the positions of any
@@ -59,4 +68,11 @@ void JoeSixAudioProcessorEditor::resized()
 
     // sets the position and size of the slider with arguments (x, y, width, height)
     midiVolume.setBounds (40, 30, 20, getHeight() - 60);
+}
+
+
+//==============================================================================
+void TutorialPluginAudioProcessorEditor::sliderValueChanged (Slider* slider)
+{
+    processor.noteOnVel = midiVolume.getValue();
 }

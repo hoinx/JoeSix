@@ -111,6 +111,45 @@ void JoeSixAudioProcessor::processBlock (AudioSampleBuffer& buffer, MidiBuffer& 
 
         // ..do something to the data...
     }
+
+
+
+
+
+	//------------------------------------------------------------------
+	// http://www.juce.com/doc/tutorial_code_basic_plugin
+	//------------------------------------------------------------------
+    buffer.clear();
+     
+    MidiBuffer processedMidi;
+    int time;
+    MidiMessage m;
+ 
+    for (MidiBuffer::Iterator i (midiMessages); i.getNextEvent (m, time);)
+    {
+        if (m.isNoteOn())
+        {
+            uint8 newVel = (uint8)noteOnVel;
+            m = MidiMessage::noteOn(m.getChannel(), m.getNoteNumber(), newVel);
+        }
+        else if (m.isNoteOff())
+        {
+        }
+        else if (m.isAftertouch())
+        {
+        }
+        else if (m.isPitchWheel())
+        {
+        }
+ 
+        processedMidi.addEvent (m, time);
+    }
+ 
+    midiMessages.swapWith (processedMidi);
+
+
+
+
 }
 
 //==============================================================================
