@@ -72,7 +72,7 @@ void JoeSixAudioProcessorEditor::resized()
 
 
 //==============================================================================
-void TutorialPluginAudioProcessorEditor::sliderValueChanged (Slider* slider)
+void JoeSixAudioProcessorEditor::sliderValueChanged (Slider* slider)
 {
     processor.noteOnVel = midiVolume.getValue();
 }

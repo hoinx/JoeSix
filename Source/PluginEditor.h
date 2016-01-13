@@ -18,7 +18,8 @@
 //==============================================================================
 /**
 */
-class JoeSixAudioProcessorEditor  : public AudioProcessorEditor
+class JoeSixAudioProcessorEditor  : public AudioProcessorEditor, 
+									private Slider::Listener
 {
 public:
     JoeSixAudioProcessorEditor (JoeSixAudioProcessor&);
